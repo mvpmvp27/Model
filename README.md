@@ -22,12 +22,13 @@ python main.py
 pip install pygame
 
 .
-├── main.py             Основной код игры
-├── high_score.txt      Файл рекорда (создаётся автоматически)
-├── README.md           Этот файл
-├── .gitignore          Исключения для Git
+ main.py             Основной код игры
+ high_score.txt      Файл рекорда (создаётся автоматически)
+ README.md           Этот файл
+ .gitignore          Исключения для Git
 
-└── Dockerfile          (Опционально) для сборки образа
+ Dockerfile          (Опционально) для сборки образа
+
 
 
 
