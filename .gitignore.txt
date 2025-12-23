@@ -1,7 +1,7 @@
 
 ---
 
-### ✅ 2. `.gitignore`
+### 2. `.gitignore`
 
 ```gitignore
 # Python
@@ -47,4 +47,5 @@ htmlcov/
 Thumbs.db
 
 # Game data
+
 high_score.txt
