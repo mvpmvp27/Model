@@ -1,0 +1,32 @@
+
+
+FROM python:3.11-slim
+
+# Устанавливаем зависимости для Pygame (GUI на Linux)
+RUN apt-get update && apt-get install -y \
+    libsdl2-dev \
+    libsdl2-image-dev \
+    libsdl2-mixer-dev \
+    libsdl2-ttf-dev \
+    libportmidi-dev \
+    libfreetype6-dev \
+    libpng-dev \
+    libjpeg-dev \
+    libx11-dev \
+    libxcursor-dev \
+    libxrandr-dev \
+    libxinerama-dev \
+    libxi-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Копируем зависимости
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Копируем игру
+COPY main.py .
+
+# Запуск (требует DISPLAY на хосте)
+CMD ["python", "main.py"]
