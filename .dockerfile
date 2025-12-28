@@ -1,8 +1,6 @@
-
-
 FROM python:3.11-slim
 
- Устанавливаем зависимости для Pygame (GUI на Linux)
+# Устанавливаем зависимости для Pygame + виртуальный дисплей
 RUN apt-get update && apt-get install -y \
     libsdl2-dev \
     libsdl2-image-dev \
@@ -17,17 +15,24 @@ RUN apt-get update && apt-get install -y \
     libxrandr-dev \
     libxinerama-dev \
     libxi-dev \
+    xvfb \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
- Копируем зависимости
+# Копируем зависимости
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
- Копируем игру
+# Копируем игру
 COPY main.py .
 
- Запуск (требует DISPLAY на хосте)
+# Создаем скрипт запуска с виртуальным дисплеем
+RUN echo '#!/bin/bash\n\
+Xvfb :1 -screen 0 1024x768x24 & \n\
+export DISPLAY=:1 \n\
+exec python main.py' > /app/run.sh \
+    && chmod +x /app/run.sh
 
-CMD ["python", "main.py"]
+# Запуск через виртуальный дисплей
+CMD ["/app/run.sh"]
