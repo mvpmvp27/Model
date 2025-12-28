@@ -28,10 +28,10 @@ PURPLE = (180, 70, 220)
 BACKGROUND_COLOR = (30, 30, 40)
 PLATFORM_COLOR = (100, 180, 100)
 
-# Импорт классов из папки functions
-from functions.player import Player
-from functions.platform import Platform
-from functions.game import Game
+# Импорт классов из папки game_functions
+from game_functions.player import Player
+from game_functions.platform import Platform
+from game_functions.game import Game
 
 if __name__ == "__main__":
     print("=" * 50)
